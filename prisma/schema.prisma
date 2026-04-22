@@ -38,6 +38,7 @@ model Company {
   categories LabelCategory[]
   items      LabelItem[]
   prints     LabelPrint[]
+  devices    Device[]
 
   @@map("companies")
 }
@@ -117,4 +118,17 @@ model LabelPrint {
   @@index([expiresAt])
   @@index([status])
   @@map("label_prints")
+}
+
+model Device {
+  id         String   @id @default(uuid())
+  deviceId   String   @unique
+  name       String?
+  companyId  String
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  company    Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
 }

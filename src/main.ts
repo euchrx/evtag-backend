@@ -10,6 +10,8 @@ async function bootstrap() {
     origin: [
       'http://localhost:5173',
       'http://localhost:3000',
+      'http://192.168.68.51:5173',
+      'http://192.168.68.51:3000',
       'https://evtag-frontend.vercel.app',
     ],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],

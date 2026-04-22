@@ -94,6 +94,18 @@ export class LabelsController {
     return this.labelsService.findPrintByQrCode(qrCode, company.companyId);
   }
 
+  @Get('prints/qr/:qrCode/mobile')
+  @Roles('SUPER_ADMIN', 'COMPANY_ADMIN', 'OPERATOR')
+  findPrintByQrCodeForMobile(
+    @Param('qrCode') qrCode: string,
+    @CompanyContext() company: RequestCompanyContext,
+  ) {
+    return this.labelsService.findPrintByQrCodeForMobile(
+      qrCode,
+      company.companyId,
+    );
+  }
+
   @Patch('prints/:id')
   @Roles('SUPER_ADMIN', 'COMPANY_ADMIN', 'OPERATOR')
   updatePrint(
@@ -121,5 +133,14 @@ export class LabelsController {
       status,
       company.companyId,
     );
+  }
+
+  @Patch('prints/:id/consume')
+  @Roles('SUPER_ADMIN', 'COMPANY_ADMIN', 'OPERATOR')
+  consumePrint(
+    @Param('id') id: string,
+    @CompanyContext() company: RequestCompanyContext,
+  ) {
+    return this.labelsService.consumePrint(id, company.companyId);
   }
 }

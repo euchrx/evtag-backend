@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -226,6 +227,68 @@ export class LabelsService {
     return print;
   }
 
+  async findPrintByQrCodeForMobile(qrCode: string, companyId: string) {
+    const print = await this.prisma.labelPrint.findFirst({
+      where: {
+        qrCode,
+        companyId,
+      },
+      include: {
+        labelItem: {
+          include: {
+            category: true,
+          },
+        },
+      },
+    });
+
+    if (!print) {
+      throw new NotFoundException('Etiqueta não encontrada.');
+    }
+
+    const now = new Date();
+    const isExpired = new Date(print.expiresAt) < now;
+
+    const normalizedStatus =
+      print.status === LabelPrintStatus.ACTIVE && isExpired
+        ? LabelPrintStatus.EXPIRED
+        : print.status;
+
+    const canConsume =
+      print.status === LabelPrintStatus.ACTIVE && !isExpired;
+
+    let message = 'Etiqueta encontrada.';
+
+    if (canConsume) {
+      message = 'Etiqueta válida para consumo.';
+    } else if (isExpired) {
+      message = 'Etiqueta vencida.';
+    } else if (print.status === LabelPrintStatus.CONSUMED) {
+      message = 'Etiqueta já consumida.';
+    } else if (print.status === LabelPrintStatus.DISCARDED) {
+      message = 'Etiqueta descartada.';
+    }
+
+    return {
+      id: print.id,
+      qrCode: print.qrCode,
+      status: normalizedStatus,
+      isExpired,
+      canConsume,
+      preparedAt: print.preparedAt,
+      expiresAt: print.expiresAt,
+      message,
+      labelItem: {
+        id: print.labelItem.id,
+        name: print.labelItem.name,
+        category: {
+          id: print.labelItem.category.id,
+          name: print.labelItem.category.name,
+        },
+      },
+    };
+  }
+
   async updatePrint(
     id: string,
     data: {
@@ -290,5 +353,39 @@ export class LabelsService {
         },
       },
     });
+  }
+
+  async consumePrint(id: string, companyId: string) {
+    const existing = await this.prisma.labelPrint.findFirst({
+      where: {
+        id,
+        companyId,
+      },
+    });
+
+    if (!existing) {
+      throw new NotFoundException('Etiqueta não encontrada.');
+    }
+
+    if (existing.status !== LabelPrintStatus.ACTIVE) {
+      throw new BadRequestException('Etiqueta já finalizada.');
+    }
+
+    if (new Date(existing.expiresAt) < new Date()) {
+      throw new BadRequestException('Etiqueta vencida.');
+    }
+
+    const updated = await this.prisma.labelPrint.update({
+      where: { id },
+      data: {
+        status: LabelPrintStatus.CONSUMED,
+      },
+    });
+
+    return {
+      success: true,
+      message: 'Etiqueta consumida com sucesso.',
+      status: updated.status,
+    };
   }
 }
