@@ -1,0 +1,120 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  COMPANY_ADMIN
+  OPERATOR
+}
+
+enum LabelItemType {
+  INPUT
+  PRODUCTION
+  FRACTIONED
+}
+
+enum LabelPrintStatus {
+  ACTIVE
+  EXPIRED
+  DISCARDED
+  CONSUMED
+}
+
+model Company {
+  id        String   @id @default(uuid())
+  name      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users      User[]
+  categories LabelCategory[]
+  items      LabelItem[]
+  prints     LabelPrint[]
+
+  @@map("companies")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole
+  companyId String?
+  company   Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([companyId])
+  @@map("users")
+}
+
+model LabelCategory {
+  id        String   @id @default(uuid())
+  name      String
+  isActive  Boolean  @default(true)
+  companyId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  items   LabelItem[]
+
+  @@index([companyId])
+  @@unique([companyId, name])
+  @@map("label_categories")
+}
+
+model LabelItem {
+  id                    String        @id @default(uuid())
+  name                  String
+  categoryId            String
+  companyId             String
+  itemType              LabelItemType
+  defaultShelfLifeHours Int
+  isActive              Boolean       @default(true)
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+
+  category    LabelCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  company     Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  labelPrints LabelPrint[]
+
+  @@index([categoryId])
+  @@index([companyId])
+  @@unique([companyId, name])
+  @@map("label_items")
+}
+
+model LabelPrint {
+  id          String           @id @default(uuid())
+  labelItemId String
+  companyId   String
+  preparedAt  DateTime
+  expiresAt   DateTime
+  quantity    Int?
+  weight      Decimal?         @db.Decimal(10, 3)
+  lot         String?
+  qrCode      String           @unique
+  status      LabelPrintStatus @default(ACTIVE)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  labelItem LabelItem @relation(fields: [labelItemId], references: [id], onDelete: Restrict)
+  company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([labelItemId])
+  @@index([companyId])
+  @@index([expiresAt])
+  @@index([status])
+  @@map("label_prints")
+}
