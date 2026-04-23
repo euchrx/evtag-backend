@@ -64,3 +64,8 @@ export type LabelItem = Prisma.LabelItemModel
  * 
  */
 export type LabelPrint = Prisma.LabelPrintModel
+/**
+ * Model Device
+ * 
+ */
+export type Device = Prisma.DeviceModel

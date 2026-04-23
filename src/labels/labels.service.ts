@@ -15,7 +15,7 @@ import {
 
 @Injectable()
 export class LabelsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async createItem(data: CreateLabelItemDto, companyId: string) {
     const name = data.name.trim();
@@ -221,7 +221,7 @@ export class LabelsService {
     });
 
     if (!print) {
-      throw new NotFoundException('Etiqueta não encontrada.');
+      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
     }
 
     return print;
@@ -243,7 +243,7 @@ export class LabelsService {
     });
 
     if (!print) {
-      throw new NotFoundException('Etiqueta não encontrada.');
+      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
     }
 
     const now = new Date();
@@ -306,7 +306,7 @@ export class LabelsService {
     });
 
     if (!existing) {
-      throw new NotFoundException('Etiqueta não encontrada.');
+      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
     }
 
     return this.prisma.labelPrint.update({
@@ -339,7 +339,7 @@ export class LabelsService {
     });
 
     if (!existing) {
-      throw new NotFoundException('Etiqueta não encontrada.');
+      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
     }
 
     return this.prisma.labelPrint.update({
@@ -355,7 +355,12 @@ export class LabelsService {
     });
   }
 
-  async consumePrint(id: string, companyId: string) {
+  async consumePrint(
+    id: string,
+    companyId: string,
+    device: any,
+    userId: string,
+  ) {
     const existing = await this.prisma.labelPrint.findFirst({
       where: {
         id,
@@ -364,7 +369,7 @@ export class LabelsService {
     });
 
     if (!existing) {
-      throw new NotFoundException('Etiqueta não encontrada.');
+      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
     }
 
     if (existing.status !== LabelPrintStatus.ACTIVE) {
@@ -375,10 +380,17 @@ export class LabelsService {
       throw new BadRequestException('Etiqueta vencida.');
     }
 
+    const now = new Date();
+
     const updated = await this.prisma.labelPrint.update({
       where: { id },
       data: {
         status: LabelPrintStatus.CONSUMED,
+
+        // 🔥 AUDITORIA
+        consumedAt: now,
+        consumedByUserId: userId,
+        consumedByDeviceId: device.deviceId,
       },
     });
 
@@ -386,6 +398,7 @@ export class LabelsService {
       success: true,
       message: 'Etiqueta consumida com sucesso.',
       status: updated.status,
+      consumedAt: now,
     };
   }
 }

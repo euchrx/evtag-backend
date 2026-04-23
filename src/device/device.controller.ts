@@ -15,7 +15,7 @@ import type { RequestCompanyContext } from 'src/common/interfaces/request-compan
 @UseGuards(JwtAuthGuard, CompanyScopeGuard)
 @Controller('devices')
 export class DeviceController {
-  constructor(private readonly deviceService: DeviceService) {}
+  constructor(private readonly deviceService: DeviceService) { }
 
   @Get()
   async list(@CompanyContext() ctx: RequestCompanyContext) {
@@ -45,5 +45,19 @@ export class DeviceController {
     @CompanyContext() ctx: RequestCompanyContext,
   ) {
     return this.deviceService.rename(id, name, ctx.companyId);
+  }
+
+  @Get('status')
+  async status(@CompanyContext() ctx: RequestCompanyContext) {
+    const devices = await this.deviceService.listByCompany(ctx.companyId);
+
+    const now = Date.now();
+
+    return devices.map((d) => ({
+      ...d,
+      isOnline:
+        !!d.lastSeenAt &&
+        now - new Date(d.lastSeenAt).getTime() < 120000, // 2 min
+    }));
   }
 }

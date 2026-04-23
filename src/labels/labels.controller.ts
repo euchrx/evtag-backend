@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { LabelsService } from './labels.service';
 import {
@@ -22,10 +23,18 @@ import { CompanyContext } from 'src/common/decorators/company-context.decorator'
 import type { RequestCompanyContext } from 'src/common/interfaces/request-company-context.interface';
 import { LabelPrintStatus } from 'src/generated/prisma/enums';
 
+// 🔥 NOVOS IMPORTS
+import { DeviceGuard } from 'src/common/guards/device.guard';
+import { CurrentDevice } from 'src/common/decorators/current-device.decorator';
+
 @UseGuards(JwtAuthGuard, RolesGuard, CompanyScopeGuard)
 @Controller('labels')
 export class LabelsController {
   constructor(private readonly labelsService: LabelsService) {}
+
+  // =========================
+  // ITEMS
+  // =========================
 
   @Post('items')
   @Roles('SUPER_ADMIN', 'COMPANY_ADMIN')
@@ -69,6 +78,10 @@ export class LabelsController {
   ) {
     return this.labelsService.deleteItem(id, company.companyId);
   }
+
+  // =========================
+  // PRINTS
+  // =========================
 
   @Post('prints')
   @Roles('SUPER_ADMIN', 'COMPANY_ADMIN', 'OPERATOR')
@@ -135,12 +148,24 @@ export class LabelsController {
     );
   }
 
+  // =========================
+  // 🔥 CONSUMO COM DEVICE
+  // =========================
+
+  @UseGuards(JwtAuthGuard, RolesGuard, CompanyScopeGuard, DeviceGuard)
   @Patch('prints/:id/consume')
   @Roles('SUPER_ADMIN', 'COMPANY_ADMIN', 'OPERATOR')
   consumePrint(
     @Param('id') id: string,
     @CompanyContext() company: RequestCompanyContext,
+    @CurrentDevice() device: any,
+    @Req() req: any,
   ) {
-    return this.labelsService.consumePrint(id, company.companyId);
+    return this.labelsService.consumePrint(
+      id,
+      company.companyId,
+      device,
+      req.user.userId,
+    );
   }
 }

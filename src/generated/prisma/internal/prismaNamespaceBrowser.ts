@@ -55,7 +55,8 @@ export const ModelName = {
   User: 'User',
   LabelCategory: 'LabelCategory',
   LabelItem: 'LabelItem',
-  LabelPrint: 'LabelPrint'
+  LabelPrint: 'LabelPrint',
+  Device: 'Device'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -139,10 +140,26 @@ export const LabelPrintScalarFieldEnum = {
   qrCode: 'qrCode',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  consumedAt: 'consumedAt',
+  consumedByUserId: 'consumedByUserId',
+  consumedByDeviceId: 'consumedByDeviceId'
 } as const
 
 export type LabelPrintScalarFieldEnum = (typeof LabelPrintScalarFieldEnum)[keyof typeof LabelPrintScalarFieldEnum]
+
+
+export const DeviceScalarFieldEnum = {
+  id: 'id',
+  deviceId: 'deviceId',
+  name: 'name',
+  companyId: 'companyId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  lastSeenAt: 'lastSeenAt'
+} as const
+
+export type DeviceScalarFieldEnum = (typeof DeviceScalarFieldEnum)[keyof typeof DeviceScalarFieldEnum]
 
 
 export const SortOrder = {

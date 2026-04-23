@@ -186,6 +186,7 @@ export type CompanyWhereInput = {
   categories?: Prisma.LabelCategoryListRelationFilter
   items?: Prisma.LabelItemListRelationFilter
   prints?: Prisma.LabelPrintListRelationFilter
+  devices?: Prisma.DeviceListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -198,6 +199,7 @@ export type CompanyOrderByWithRelationInput = {
   categories?: Prisma.LabelCategoryOrderByRelationAggregateInput
   items?: Prisma.LabelItemOrderByRelationAggregateInput
   prints?: Prisma.LabelPrintOrderByRelationAggregateInput
+  devices?: Prisma.DeviceOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -213,6 +215,7 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   categories?: Prisma.LabelCategoryListRelationFilter
   items?: Prisma.LabelItemListRelationFilter
   prints?: Prisma.LabelPrintListRelationFilter
+  devices?: Prisma.DeviceListRelationFilter
 }, "id">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -247,6 +250,7 @@ export type CompanyCreateInput = {
   categories?: Prisma.LabelCategoryCreateNestedManyWithoutCompanyInput
   items?: Prisma.LabelItemCreateNestedManyWithoutCompanyInput
   prints?: Prisma.LabelPrintCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -259,6 +263,7 @@ export type CompanyUncheckedCreateInput = {
   categories?: Prisma.LabelCategoryUncheckedCreateNestedManyWithoutCompanyInput
   items?: Prisma.LabelItemUncheckedCreateNestedManyWithoutCompanyInput
   prints?: Prisma.LabelPrintUncheckedCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -271,6 +276,7 @@ export type CompanyUpdateInput = {
   categories?: Prisma.LabelCategoryUpdateManyWithoutCompanyNestedInput
   items?: Prisma.LabelItemUpdateManyWithoutCompanyNestedInput
   prints?: Prisma.LabelPrintUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -283,6 +289,7 @@ export type CompanyUncheckedUpdateInput = {
   categories?: Prisma.LabelCategoryUncheckedUpdateManyWithoutCompanyNestedInput
   items?: Prisma.LabelItemUncheckedUpdateManyWithoutCompanyNestedInput
   prints?: Prisma.LabelPrintUncheckedUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -413,6 +420,20 @@ export type CompanyUpdateOneRequiredWithoutPrintsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutPrintsInput, Prisma.CompanyUpdateWithoutPrintsInput>, Prisma.CompanyUncheckedUpdateWithoutPrintsInput>
 }
 
+export type CompanyCreateNestedOneWithoutDevicesInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutDevicesInput, Prisma.CompanyUncheckedCreateWithoutDevicesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutDevicesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutDevicesNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutDevicesInput, Prisma.CompanyUncheckedCreateWithoutDevicesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutDevicesInput
+  upsert?: Prisma.CompanyUpsertWithoutDevicesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutDevicesInput, Prisma.CompanyUpdateWithoutDevicesInput>, Prisma.CompanyUncheckedUpdateWithoutDevicesInput>
+}
+
 export type CompanyCreateWithoutUsersInput = {
   id?: string
   name: string
@@ -422,6 +443,7 @@ export type CompanyCreateWithoutUsersInput = {
   categories?: Prisma.LabelCategoryCreateNestedManyWithoutCompanyInput
   items?: Prisma.LabelItemCreateNestedManyWithoutCompanyInput
   prints?: Prisma.LabelPrintCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutUsersInput = {
@@ -433,6 +455,7 @@ export type CompanyUncheckedCreateWithoutUsersInput = {
   categories?: Prisma.LabelCategoryUncheckedCreateNestedManyWithoutCompanyInput
   items?: Prisma.LabelItemUncheckedCreateNestedManyWithoutCompanyInput
   prints?: Prisma.LabelPrintUncheckedCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutUsersInput = {
@@ -460,6 +483,7 @@ export type CompanyUpdateWithoutUsersInput = {
   categories?: Prisma.LabelCategoryUpdateManyWithoutCompanyNestedInput
   items?: Prisma.LabelItemUpdateManyWithoutCompanyNestedInput
   prints?: Prisma.LabelPrintUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutUsersInput = {
@@ -471,6 +495,7 @@ export type CompanyUncheckedUpdateWithoutUsersInput = {
   categories?: Prisma.LabelCategoryUncheckedUpdateManyWithoutCompanyNestedInput
   items?: Prisma.LabelItemUncheckedUpdateManyWithoutCompanyNestedInput
   prints?: Prisma.LabelPrintUncheckedUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCategoriesInput = {
@@ -482,6 +507,7 @@ export type CompanyCreateWithoutCategoriesInput = {
   users?: Prisma.UserCreateNestedManyWithoutCompanyInput
   items?: Prisma.LabelItemCreateNestedManyWithoutCompanyInput
   prints?: Prisma.LabelPrintCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCategoriesInput = {
@@ -493,6 +519,7 @@ export type CompanyUncheckedCreateWithoutCategoriesInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
   items?: Prisma.LabelItemUncheckedCreateNestedManyWithoutCompanyInput
   prints?: Prisma.LabelPrintUncheckedCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCategoriesInput = {
@@ -520,6 +547,7 @@ export type CompanyUpdateWithoutCategoriesInput = {
   users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
   items?: Prisma.LabelItemUpdateManyWithoutCompanyNestedInput
   prints?: Prisma.LabelPrintUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCategoriesInput = {
@@ -531,6 +559,7 @@ export type CompanyUncheckedUpdateWithoutCategoriesInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
   items?: Prisma.LabelItemUncheckedUpdateManyWithoutCompanyNestedInput
   prints?: Prisma.LabelPrintUncheckedUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutItemsInput = {
@@ -542,6 +571,7 @@ export type CompanyCreateWithoutItemsInput = {
   users?: Prisma.UserCreateNestedManyWithoutCompanyInput
   categories?: Prisma.LabelCategoryCreateNestedManyWithoutCompanyInput
   prints?: Prisma.LabelPrintCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutItemsInput = {
@@ -553,6 +583,7 @@ export type CompanyUncheckedCreateWithoutItemsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
   categories?: Prisma.LabelCategoryUncheckedCreateNestedManyWithoutCompanyInput
   prints?: Prisma.LabelPrintUncheckedCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutItemsInput = {
@@ -580,6 +611,7 @@ export type CompanyUpdateWithoutItemsInput = {
   users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
   categories?: Prisma.LabelCategoryUpdateManyWithoutCompanyNestedInput
   prints?: Prisma.LabelPrintUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutItemsInput = {
@@ -591,6 +623,7 @@ export type CompanyUncheckedUpdateWithoutItemsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
   categories?: Prisma.LabelCategoryUncheckedUpdateManyWithoutCompanyNestedInput
   prints?: Prisma.LabelPrintUncheckedUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPrintsInput = {
@@ -602,6 +635,7 @@ export type CompanyCreateWithoutPrintsInput = {
   users?: Prisma.UserCreateNestedManyWithoutCompanyInput
   categories?: Prisma.LabelCategoryCreateNestedManyWithoutCompanyInput
   items?: Prisma.LabelItemCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPrintsInput = {
@@ -613,6 +647,7 @@ export type CompanyUncheckedCreateWithoutPrintsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
   categories?: Prisma.LabelCategoryUncheckedCreateNestedManyWithoutCompanyInput
   items?: Prisma.LabelItemUncheckedCreateNestedManyWithoutCompanyInput
+  devices?: Prisma.DeviceUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPrintsInput = {
@@ -640,6 +675,7 @@ export type CompanyUpdateWithoutPrintsInput = {
   users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
   categories?: Prisma.LabelCategoryUpdateManyWithoutCompanyNestedInput
   items?: Prisma.LabelItemUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPrintsInput = {
@@ -651,6 +687,71 @@ export type CompanyUncheckedUpdateWithoutPrintsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
   categories?: Prisma.LabelCategoryUncheckedUpdateManyWithoutCompanyNestedInput
   items?: Prisma.LabelItemUncheckedUpdateManyWithoutCompanyNestedInput
+  devices?: Prisma.DeviceUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutDevicesInput = {
+  id?: string
+  name: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutCompanyInput
+  categories?: Prisma.LabelCategoryCreateNestedManyWithoutCompanyInput
+  items?: Prisma.LabelItemCreateNestedManyWithoutCompanyInput
+  prints?: Prisma.LabelPrintCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutDevicesInput = {
+  id?: string
+  name: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
+  categories?: Prisma.LabelCategoryUncheckedCreateNestedManyWithoutCompanyInput
+  items?: Prisma.LabelItemUncheckedCreateNestedManyWithoutCompanyInput
+  prints?: Prisma.LabelPrintUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutDevicesInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutDevicesInput, Prisma.CompanyUncheckedCreateWithoutDevicesInput>
+}
+
+export type CompanyUpsertWithoutDevicesInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutDevicesInput, Prisma.CompanyUncheckedUpdateWithoutDevicesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutDevicesInput, Prisma.CompanyUncheckedCreateWithoutDevicesInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutDevicesInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutDevicesInput, Prisma.CompanyUncheckedUpdateWithoutDevicesInput>
+}
+
+export type CompanyUpdateWithoutDevicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
+  categories?: Prisma.LabelCategoryUpdateManyWithoutCompanyNestedInput
+  items?: Prisma.LabelItemUpdateManyWithoutCompanyNestedInput
+  prints?: Prisma.LabelPrintUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutDevicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
+  categories?: Prisma.LabelCategoryUncheckedUpdateManyWithoutCompanyNestedInput
+  items?: Prisma.LabelItemUncheckedUpdateManyWithoutCompanyNestedInput
+  prints?: Prisma.LabelPrintUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 
@@ -663,6 +764,7 @@ export type CompanyCountOutputType = {
   categories: number
   items: number
   prints: number
+  devices: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -670,6 +772,7 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   categories?: boolean | CompanyCountOutputTypeCountCategoriesArgs
   items?: boolean | CompanyCountOutputTypeCountItemsArgs
   prints?: boolean | CompanyCountOutputTypeCountPrintsArgs
+  devices?: boolean | CompanyCountOutputTypeCountDevicesArgs
 }
 
 /**
@@ -710,6 +813,13 @@ export type CompanyCountOutputTypeCountPrintsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.LabelPrintWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountDevicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeviceWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -721,6 +831,7 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   categories?: boolean | Prisma.Company$categoriesArgs<ExtArgs>
   items?: boolean | Prisma.Company$itemsArgs<ExtArgs>
   prints?: boolean | Prisma.Company$printsArgs<ExtArgs>
+  devices?: boolean | Prisma.Company$devicesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -754,6 +865,7 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   categories?: boolean | Prisma.Company$categoriesArgs<ExtArgs>
   items?: boolean | Prisma.Company$itemsArgs<ExtArgs>
   prints?: boolean | Prisma.Company$printsArgs<ExtArgs>
+  devices?: boolean | Prisma.Company$devicesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -766,6 +878,7 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     categories: Prisma.$LabelCategoryPayload<ExtArgs>[]
     items: Prisma.$LabelItemPayload<ExtArgs>[]
     prints: Prisma.$LabelPrintPayload<ExtArgs>[]
+    devices: Prisma.$DevicePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1171,6 +1284,7 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   categories<T extends Prisma.Company$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LabelCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   items<T extends Prisma.Company$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LabelItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   prints<T extends Prisma.Company$printsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$printsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LabelPrintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  devices<T extends Prisma.Company$devicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$devicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DevicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1691,6 +1805,30 @@ export type Company$printsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.LabelPrintScalarFieldEnum | Prisma.LabelPrintScalarFieldEnum[]
+}
+
+/**
+ * Company.devices
+ */
+export type Company$devicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Device
+   */
+  select?: Prisma.DeviceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Device
+   */
+  omit?: Prisma.DeviceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeviceInclude<ExtArgs> | null
+  where?: Prisma.DeviceWhereInput
+  orderBy?: Prisma.DeviceOrderByWithRelationInput | Prisma.DeviceOrderByWithRelationInput[]
+  cursor?: Prisma.DeviceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeviceScalarFieldEnum | Prisma.DeviceScalarFieldEnum[]
 }
 
 /**

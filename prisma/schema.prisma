@@ -110,6 +110,11 @@ model LabelPrint {
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 
+  // 🔥 NOVOS CAMPOS
+  consumedAt          DateTime?
+  consumedByUserId    String?
+  consumedByDeviceId  String?
+
   labelItem LabelItem @relation(fields: [labelItemId], references: [id], onDelete: Restrict)
   company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
@@ -117,7 +122,6 @@ model LabelPrint {
   @@index([companyId])
   @@index([expiresAt])
   @@index([status])
-  @@map("label_prints")
 }
 
 model Device {
@@ -127,8 +131,10 @@ model Device {
   companyId  String
   isActive   Boolean  @default(true)
   createdAt  DateTime @default(now())
+  lastSeenAt DateTime?
 
   company    Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
   @@index([companyId])
+  @@index([lastSeenAt])
 }

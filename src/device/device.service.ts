@@ -7,7 +7,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class DeviceService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async findOrCreateDevice(deviceId: string, companyId: string) {
     let device = await this.prisma.device.findUnique({
@@ -15,14 +15,13 @@ export class DeviceService {
     });
 
     if (!device) {
-      device = await this.prisma.device.create({
+      return this.prisma.device.create({
         data: {
           deviceId,
           companyId,
+          lastSeenAt: new Date(),
         },
       });
-
-      return device;
     }
 
     if (device.companyId !== companyId) {
@@ -32,6 +31,14 @@ export class DeviceService {
     if (!device.isActive) {
       throw new ForbiddenException('Device desativado');
     }
+
+    // 🔥 HEARTBEAT AUTOMÁTICO
+    await this.prisma.device.update({
+      where: { id: device.id },
+      data: {
+        lastSeenAt: new Date(),
+      },
+    });
 
     return device;
   }

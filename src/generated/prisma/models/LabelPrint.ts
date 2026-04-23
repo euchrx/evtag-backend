@@ -49,6 +49,9 @@ export type LabelPrintMinAggregateOutputType = {
   status: $Enums.LabelPrintStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  consumedAt: Date | null
+  consumedByUserId: string | null
+  consumedByDeviceId: string | null
 }
 
 export type LabelPrintMaxAggregateOutputType = {
@@ -64,6 +67,9 @@ export type LabelPrintMaxAggregateOutputType = {
   status: $Enums.LabelPrintStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  consumedAt: Date | null
+  consumedByUserId: string | null
+  consumedByDeviceId: string | null
 }
 
 export type LabelPrintCountAggregateOutputType = {
@@ -79,6 +85,9 @@ export type LabelPrintCountAggregateOutputType = {
   status: number
   createdAt: number
   updatedAt: number
+  consumedAt: number
+  consumedByUserId: number
+  consumedByDeviceId: number
   _all: number
 }
 
@@ -106,6 +115,9 @@ export type LabelPrintMinAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  consumedAt?: true
+  consumedByUserId?: true
+  consumedByDeviceId?: true
 }
 
 export type LabelPrintMaxAggregateInputType = {
@@ -121,6 +133,9 @@ export type LabelPrintMaxAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  consumedAt?: true
+  consumedByUserId?: true
+  consumedByDeviceId?: true
 }
 
 export type LabelPrintCountAggregateInputType = {
@@ -136,6 +151,9 @@ export type LabelPrintCountAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  consumedAt?: true
+  consumedByUserId?: true
+  consumedByDeviceId?: true
   _all?: true
 }
 
@@ -238,6 +256,9 @@ export type LabelPrintGroupByOutputType = {
   status: $Enums.LabelPrintStatus
   createdAt: Date
   updatedAt: Date
+  consumedAt: Date | null
+  consumedByUserId: string | null
+  consumedByDeviceId: string | null
   _count: LabelPrintCountAggregateOutputType | null
   _avg: LabelPrintAvgAggregateOutputType | null
   _sum: LabelPrintSumAggregateOutputType | null
@@ -276,6 +297,9 @@ export type LabelPrintWhereInput = {
   status?: Prisma.EnumLabelPrintStatusFilter<"LabelPrint"> | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
+  consumedAt?: Prisma.DateTimeNullableFilter<"LabelPrint"> | Date | string | null
+  consumedByUserId?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  consumedByDeviceId?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
   labelItem?: Prisma.XOR<Prisma.LabelItemScalarRelationFilter, Prisma.LabelItemWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
 }
@@ -293,6 +317,9 @@ export type LabelPrintOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  consumedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  consumedByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  consumedByDeviceId?: Prisma.SortOrderInput | Prisma.SortOrder
   labelItem?: Prisma.LabelItemOrderByWithRelationInput
   company?: Prisma.CompanyOrderByWithRelationInput
 }
@@ -313,6 +340,9 @@ export type LabelPrintWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumLabelPrintStatusFilter<"LabelPrint"> | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
+  consumedAt?: Prisma.DateTimeNullableFilter<"LabelPrint"> | Date | string | null
+  consumedByUserId?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  consumedByDeviceId?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
   labelItem?: Prisma.XOR<Prisma.LabelItemScalarRelationFilter, Prisma.LabelItemWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
 }, "id" | "qrCode">
@@ -330,6 +360,9 @@ export type LabelPrintOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  consumedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  consumedByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  consumedByDeviceId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.LabelPrintCountOrderByAggregateInput
   _avg?: Prisma.LabelPrintAvgOrderByAggregateInput
   _max?: Prisma.LabelPrintMaxOrderByAggregateInput
@@ -353,6 +386,9 @@ export type LabelPrintScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumLabelPrintStatusWithAggregatesFilter<"LabelPrint"> | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"LabelPrint"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"LabelPrint"> | Date | string
+  consumedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"LabelPrint"> | Date | string | null
+  consumedByUserId?: Prisma.StringNullableWithAggregatesFilter<"LabelPrint"> | string | null
+  consumedByDeviceId?: Prisma.StringNullableWithAggregatesFilter<"LabelPrint"> | string | null
 }
 
 export type LabelPrintCreateInput = {
@@ -366,6 +402,9 @@ export type LabelPrintCreateInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
   labelItem: Prisma.LabelItemCreateNestedOneWithoutLabelPrintsInput
   company: Prisma.CompanyCreateNestedOneWithoutPrintsInput
 }
@@ -383,6 +422,9 @@ export type LabelPrintUncheckedCreateInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
 }
 
 export type LabelPrintUpdateInput = {
@@ -396,6 +438,9 @@ export type LabelPrintUpdateInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   labelItem?: Prisma.LabelItemUpdateOneRequiredWithoutLabelPrintsNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutPrintsNestedInput
 }
@@ -413,6 +458,9 @@ export type LabelPrintUncheckedUpdateInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LabelPrintCreateManyInput = {
@@ -428,6 +476,9 @@ export type LabelPrintCreateManyInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
 }
 
 export type LabelPrintUpdateManyMutationInput = {
@@ -441,6 +492,9 @@ export type LabelPrintUpdateManyMutationInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LabelPrintUncheckedUpdateManyInput = {
@@ -456,6 +510,9 @@ export type LabelPrintUncheckedUpdateManyInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LabelPrintListRelationFilter = {
@@ -481,6 +538,9 @@ export type LabelPrintCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  consumedAt?: Prisma.SortOrder
+  consumedByUserId?: Prisma.SortOrder
+  consumedByDeviceId?: Prisma.SortOrder
 }
 
 export type LabelPrintAvgOrderByAggregateInput = {
@@ -501,6 +561,9 @@ export type LabelPrintMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  consumedAt?: Prisma.SortOrder
+  consumedByUserId?: Prisma.SortOrder
+  consumedByDeviceId?: Prisma.SortOrder
 }
 
 export type LabelPrintMinOrderByAggregateInput = {
@@ -516,6 +579,9 @@ export type LabelPrintMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  consumedAt?: Prisma.SortOrder
+  consumedByUserId?: Prisma.SortOrder
+  consumedByDeviceId?: Prisma.SortOrder
 }
 
 export type LabelPrintSumOrderByAggregateInput = {
@@ -627,6 +693,10 @@ export type EnumLabelPrintStatusFieldUpdateOperationsInput = {
   set?: $Enums.LabelPrintStatus
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type LabelPrintCreateWithoutCompanyInput = {
   id?: string
   preparedAt: Date | string
@@ -638,6 +708,9 @@ export type LabelPrintCreateWithoutCompanyInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
   labelItem: Prisma.LabelItemCreateNestedOneWithoutLabelPrintsInput
 }
 
@@ -653,6 +726,9 @@ export type LabelPrintUncheckedCreateWithoutCompanyInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
 }
 
 export type LabelPrintCreateOrConnectWithoutCompanyInput = {
@@ -697,6 +773,9 @@ export type LabelPrintScalarWhereInput = {
   status?: Prisma.EnumLabelPrintStatusFilter<"LabelPrint"> | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
+  consumedAt?: Prisma.DateTimeNullableFilter<"LabelPrint"> | Date | string | null
+  consumedByUserId?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  consumedByDeviceId?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
 }
 
 export type LabelPrintCreateWithoutLabelItemInput = {
@@ -710,6 +789,9 @@ export type LabelPrintCreateWithoutLabelItemInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
   company: Prisma.CompanyCreateNestedOneWithoutPrintsInput
 }
 
@@ -725,6 +807,9 @@ export type LabelPrintUncheckedCreateWithoutLabelItemInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
 }
 
 export type LabelPrintCreateOrConnectWithoutLabelItemInput = {
@@ -765,6 +850,9 @@ export type LabelPrintCreateManyCompanyInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
 }
 
 export type LabelPrintUpdateWithoutCompanyInput = {
@@ -778,6 +866,9 @@ export type LabelPrintUpdateWithoutCompanyInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   labelItem?: Prisma.LabelItemUpdateOneRequiredWithoutLabelPrintsNestedInput
 }
 
@@ -793,6 +884,9 @@ export type LabelPrintUncheckedUpdateWithoutCompanyInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LabelPrintUncheckedUpdateManyWithoutCompanyInput = {
@@ -807,6 +901,9 @@ export type LabelPrintUncheckedUpdateManyWithoutCompanyInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LabelPrintCreateManyLabelItemInput = {
@@ -821,6 +918,9 @@ export type LabelPrintCreateManyLabelItemInput = {
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  consumedAt?: Date | string | null
+  consumedByUserId?: string | null
+  consumedByDeviceId?: string | null
 }
 
 export type LabelPrintUpdateWithoutLabelItemInput = {
@@ -834,6 +934,9 @@ export type LabelPrintUpdateWithoutLabelItemInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   company?: Prisma.CompanyUpdateOneRequiredWithoutPrintsNestedInput
 }
 
@@ -849,6 +952,9 @@ export type LabelPrintUncheckedUpdateWithoutLabelItemInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LabelPrintUncheckedUpdateManyWithoutLabelItemInput = {
@@ -863,6 +969,9 @@ export type LabelPrintUncheckedUpdateManyWithoutLabelItemInput = {
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consumedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consumedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consumedByDeviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -880,6 +989,9 @@ export type LabelPrintSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  consumedAt?: boolean
+  consumedByUserId?: boolean
+  consumedByDeviceId?: boolean
   labelItem?: boolean | Prisma.LabelItemDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["labelPrint"]>
@@ -897,6 +1009,9 @@ export type LabelPrintSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  consumedAt?: boolean
+  consumedByUserId?: boolean
+  consumedByDeviceId?: boolean
   labelItem?: boolean | Prisma.LabelItemDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["labelPrint"]>
@@ -914,6 +1029,9 @@ export type LabelPrintSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  consumedAt?: boolean
+  consumedByUserId?: boolean
+  consumedByDeviceId?: boolean
   labelItem?: boolean | Prisma.LabelItemDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["labelPrint"]>
@@ -931,9 +1049,12 @@ export type LabelPrintSelectScalar = {
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  consumedAt?: boolean
+  consumedByUserId?: boolean
+  consumedByDeviceId?: boolean
 }
 
-export type LabelPrintOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "labelItemId" | "companyId" | "preparedAt" | "expiresAt" | "quantity" | "weight" | "lot" | "qrCode" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["labelPrint"]>
+export type LabelPrintOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "labelItemId" | "companyId" | "preparedAt" | "expiresAt" | "quantity" | "weight" | "lot" | "qrCode" | "status" | "createdAt" | "updatedAt" | "consumedAt" | "consumedByUserId" | "consumedByDeviceId", ExtArgs["result"]["labelPrint"]>
 export type LabelPrintInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   labelItem?: boolean | Prisma.LabelItemDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -966,6 +1087,9 @@ export type $LabelPrintPayload<ExtArgs extends runtime.Types.Extensions.Internal
     status: $Enums.LabelPrintStatus
     createdAt: Date
     updatedAt: Date
+    consumedAt: Date | null
+    consumedByUserId: string | null
+    consumedByDeviceId: string | null
   }, ExtArgs["result"]["labelPrint"]>
   composites: {}
 }
@@ -1403,6 +1527,9 @@ export interface LabelPrintFieldRefs {
   readonly status: Prisma.FieldRef<"LabelPrint", 'LabelPrintStatus'>
   readonly createdAt: Prisma.FieldRef<"LabelPrint", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"LabelPrint", 'DateTime'>
+  readonly consumedAt: Prisma.FieldRef<"LabelPrint", 'DateTime'>
+  readonly consumedByUserId: Prisma.FieldRef<"LabelPrint", 'String'>
+  readonly consumedByDeviceId: Prisma.FieldRef<"LabelPrint", 'String'>
 }
     
 
