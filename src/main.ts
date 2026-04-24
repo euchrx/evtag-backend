@@ -12,30 +12,6 @@ const allowedOrigins = [
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use((req, res, next) => {
-    const origin = req.headers.origin;
-
-    if (origin && allowedOrigins.includes(origin)) {
-      res.header('Access-Control-Allow-Origin', origin);
-    }
-
-    res.header('Vary', 'Origin');
-    res.header(
-      'Access-Control-Allow-Methods',
-      'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    );
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Content-Type,Authorization,x-company-id',
-    );
-
-    if (req.method === 'OPTIONS') {
-      return res.sendStatus(204);
-    }
-
-    next();
-  });
-
   app.enableCors({
     origin: allowedOrigins,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
@@ -52,7 +28,9 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(process.env.PORT ?? 3000);
+  const port = process.env.PORT ?? 3000;
+
+  await app.listen(port, '0.0.0.0');
 }
 
 bootstrap();
