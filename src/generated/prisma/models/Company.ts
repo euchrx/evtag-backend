@@ -28,6 +28,15 @@ export type CompanyMinAggregateOutputType = {
   id: string | null
   name: string | null
   isActive: boolean | null
+  tradeName: string | null
+  document: string | null
+  cnpj: string | null
+  cep: string | null
+  street: string | null
+  number: string | null
+  district: string | null
+  city: string | null
+  state: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -36,6 +45,15 @@ export type CompanyMaxAggregateOutputType = {
   id: string | null
   name: string | null
   isActive: boolean | null
+  tradeName: string | null
+  document: string | null
+  cnpj: string | null
+  cep: string | null
+  street: string | null
+  number: string | null
+  district: string | null
+  city: string | null
+  state: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +62,15 @@ export type CompanyCountAggregateOutputType = {
   id: number
   name: number
   isActive: number
+  tradeName: number
+  document: number
+  cnpj: number
+  cep: number
+  street: number
+  number: number
+  district: number
+  city: number
+  state: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -54,6 +81,15 @@ export type CompanyMinAggregateInputType = {
   id?: true
   name?: true
   isActive?: true
+  tradeName?: true
+  document?: true
+  cnpj?: true
+  cep?: true
+  street?: true
+  number?: true
+  district?: true
+  city?: true
+  state?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -62,6 +98,15 @@ export type CompanyMaxAggregateInputType = {
   id?: true
   name?: true
   isActive?: true
+  tradeName?: true
+  document?: true
+  cnpj?: true
+  cep?: true
+  street?: true
+  number?: true
+  district?: true
+  city?: true
+  state?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -70,6 +115,15 @@ export type CompanyCountAggregateInputType = {
   id?: true
   name?: true
   isActive?: true
+  tradeName?: true
+  document?: true
+  cnpj?: true
+  cep?: true
+  street?: true
+  number?: true
+  district?: true
+  city?: true
+  state?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -151,6 +205,15 @@ export type CompanyGroupByOutputType = {
   id: string
   name: string
   isActive: boolean
+  tradeName: string | null
+  document: string | null
+  cnpj: string | null
+  cep: string | null
+  street: string | null
+  number: string | null
+  district: string | null
+  city: string | null
+  state: string | null
   createdAt: Date
   updatedAt: Date
   _count: CompanyCountAggregateOutputType | null
@@ -180,6 +243,15 @@ export type CompanyWhereInput = {
   id?: Prisma.StringFilter<"Company"> | string
   name?: Prisma.StringFilter<"Company"> | string
   isActive?: Prisma.BoolFilter<"Company"> | boolean
+  tradeName?: Prisma.StringNullableFilter<"Company"> | string | null
+  document?: Prisma.StringNullableFilter<"Company"> | string | null
+  cnpj?: Prisma.StringNullableFilter<"Company"> | string | null
+  cep?: Prisma.StringNullableFilter<"Company"> | string | null
+  street?: Prisma.StringNullableFilter<"Company"> | string | null
+  number?: Prisma.StringNullableFilter<"Company"> | string | null
+  district?: Prisma.StringNullableFilter<"Company"> | string | null
+  city?: Prisma.StringNullableFilter<"Company"> | string | null
+  state?: Prisma.StringNullableFilter<"Company"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   users?: Prisma.UserListRelationFilter
@@ -193,6 +265,15 @@ export type CompanyOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  tradeName?: Prisma.SortOrderInput | Prisma.SortOrder
+  document?: Prisma.SortOrderInput | Prisma.SortOrder
+  cnpj?: Prisma.SortOrderInput | Prisma.SortOrder
+  cep?: Prisma.SortOrderInput | Prisma.SortOrder
+  street?: Prisma.SortOrderInput | Prisma.SortOrder
+  number?: Prisma.SortOrderInput | Prisma.SortOrder
+  district?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  state?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   users?: Prisma.UserOrderByRelationAggregateInput
@@ -209,6 +290,15 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CompanyWhereInput | Prisma.CompanyWhereInput[]
   name?: Prisma.StringFilter<"Company"> | string
   isActive?: Prisma.BoolFilter<"Company"> | boolean
+  tradeName?: Prisma.StringNullableFilter<"Company"> | string | null
+  document?: Prisma.StringNullableFilter<"Company"> | string | null
+  cnpj?: Prisma.StringNullableFilter<"Company"> | string | null
+  cep?: Prisma.StringNullableFilter<"Company"> | string | null
+  street?: Prisma.StringNullableFilter<"Company"> | string | null
+  number?: Prisma.StringNullableFilter<"Company"> | string | null
+  district?: Prisma.StringNullableFilter<"Company"> | string | null
+  city?: Prisma.StringNullableFilter<"Company"> | string | null
+  state?: Prisma.StringNullableFilter<"Company"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   users?: Prisma.UserListRelationFilter
@@ -222,6 +312,15 @@ export type CompanyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  tradeName?: Prisma.SortOrderInput | Prisma.SortOrder
+  document?: Prisma.SortOrderInput | Prisma.SortOrder
+  cnpj?: Prisma.SortOrderInput | Prisma.SortOrder
+  cep?: Prisma.SortOrderInput | Prisma.SortOrder
+  street?: Prisma.SortOrderInput | Prisma.SortOrder
+  number?: Prisma.SortOrderInput | Prisma.SortOrder
+  district?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  state?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CompanyCountOrderByAggregateInput
@@ -236,6 +335,15 @@ export type CompanyScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Company"> | string
   name?: Prisma.StringWithAggregatesFilter<"Company"> | string
   isActive?: Prisma.BoolWithAggregatesFilter<"Company"> | boolean
+  tradeName?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  document?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  cnpj?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  cep?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  street?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  number?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  district?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  city?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  state?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
 }
@@ -244,6 +352,15 @@ export type CompanyCreateInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutCompanyInput
@@ -257,6 +374,15 @@ export type CompanyUncheckedCreateInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
@@ -270,6 +396,15 @@ export type CompanyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
@@ -283,6 +418,15 @@ export type CompanyUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
@@ -296,6 +440,15 @@ export type CompanyCreateManyInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -304,6 +457,15 @@ export type CompanyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -312,6 +474,15 @@ export type CompanyUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -320,6 +491,15 @@ export type CompanyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  tradeName?: Prisma.SortOrder
+  document?: Prisma.SortOrder
+  cnpj?: Prisma.SortOrder
+  cep?: Prisma.SortOrder
+  street?: Prisma.SortOrder
+  number?: Prisma.SortOrder
+  district?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  state?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -328,6 +508,15 @@ export type CompanyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  tradeName?: Prisma.SortOrder
+  document?: Prisma.SortOrder
+  cnpj?: Prisma.SortOrder
+  cep?: Prisma.SortOrder
+  street?: Prisma.SortOrder
+  number?: Prisma.SortOrder
+  district?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  state?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -336,6 +525,15 @@ export type CompanyMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  tradeName?: Prisma.SortOrder
+  document?: Prisma.SortOrder
+  cnpj?: Prisma.SortOrder
+  cep?: Prisma.SortOrder
+  street?: Prisma.SortOrder
+  number?: Prisma.SortOrder
+  district?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  state?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -356,6 +554,10 @@ export type StringFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -438,6 +640,15 @@ export type CompanyCreateWithoutUsersInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   categories?: Prisma.LabelCategoryCreateNestedManyWithoutCompanyInput
@@ -450,6 +661,15 @@ export type CompanyUncheckedCreateWithoutUsersInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   categories?: Prisma.LabelCategoryUncheckedCreateNestedManyWithoutCompanyInput
@@ -478,6 +698,15 @@ export type CompanyUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.LabelCategoryUpdateManyWithoutCompanyNestedInput
@@ -490,6 +719,15 @@ export type CompanyUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.LabelCategoryUncheckedUpdateManyWithoutCompanyNestedInput
@@ -502,6 +740,15 @@ export type CompanyCreateWithoutCategoriesInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutCompanyInput
@@ -514,6 +761,15 @@ export type CompanyUncheckedCreateWithoutCategoriesInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
@@ -542,6 +798,15 @@ export type CompanyUpdateWithoutCategoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
@@ -554,6 +819,15 @@ export type CompanyUncheckedUpdateWithoutCategoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
@@ -566,6 +840,15 @@ export type CompanyCreateWithoutItemsInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutCompanyInput
@@ -578,6 +861,15 @@ export type CompanyUncheckedCreateWithoutItemsInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
@@ -606,6 +898,15 @@ export type CompanyUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
@@ -618,6 +919,15 @@ export type CompanyUncheckedUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
@@ -630,6 +940,15 @@ export type CompanyCreateWithoutPrintsInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutCompanyInput
@@ -642,6 +961,15 @@ export type CompanyUncheckedCreateWithoutPrintsInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
@@ -670,6 +998,15 @@ export type CompanyUpdateWithoutPrintsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
@@ -682,6 +1019,15 @@ export type CompanyUncheckedUpdateWithoutPrintsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
@@ -694,6 +1040,15 @@ export type CompanyCreateWithoutDevicesInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutCompanyInput
@@ -706,6 +1061,15 @@ export type CompanyUncheckedCreateWithoutDevicesInput = {
   id?: string
   name: string
   isActive?: boolean
+  tradeName?: string | null
+  document?: string | null
+  cnpj?: string | null
+  cep?: string | null
+  street?: string | null
+  number?: string | null
+  district?: string | null
+  city?: string | null
+  state?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCompanyInput
@@ -734,6 +1098,15 @@ export type CompanyUpdateWithoutDevicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutCompanyNestedInput
@@ -746,6 +1119,15 @@ export type CompanyUncheckedUpdateWithoutDevicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  document?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  street?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutCompanyNestedInput
@@ -825,6 +1207,15 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   isActive?: boolean
+  tradeName?: boolean
+  document?: boolean
+  cnpj?: boolean
+  cep?: boolean
+  street?: boolean
+  number?: boolean
+  district?: boolean
+  city?: boolean
+  state?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   users?: boolean | Prisma.Company$usersArgs<ExtArgs>
@@ -839,6 +1230,15 @@ export type CompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   isActive?: boolean
+  tradeName?: boolean
+  document?: boolean
+  cnpj?: boolean
+  cep?: boolean
+  street?: boolean
+  number?: boolean
+  district?: boolean
+  city?: boolean
+  state?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["company"]>
@@ -847,6 +1247,15 @@ export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   isActive?: boolean
+  tradeName?: boolean
+  document?: boolean
+  cnpj?: boolean
+  cep?: boolean
+  street?: boolean
+  number?: boolean
+  district?: boolean
+  city?: boolean
+  state?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["company"]>
@@ -855,11 +1264,20 @@ export type CompanySelectScalar = {
   id?: boolean
   name?: boolean
   isActive?: boolean
+  tradeName?: boolean
+  document?: boolean
+  cnpj?: boolean
+  cep?: boolean
+  street?: boolean
+  number?: boolean
+  district?: boolean
+  city?: boolean
+  state?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
+export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "isActive" | "tradeName" | "document" | "cnpj" | "cep" | "street" | "number" | "district" | "city" | "state" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.Company$usersArgs<ExtArgs>
   categories?: boolean | Prisma.Company$categoriesArgs<ExtArgs>
@@ -884,6 +1302,15 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     name: string
     isActive: boolean
+    tradeName: string | null
+    document: string | null
+    cnpj: string | null
+    cep: string | null
+    street: string | null
+    number: string | null
+    district: string | null
+    city: string | null
+    state: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["company"]>
@@ -1317,6 +1744,15 @@ export interface CompanyFieldRefs {
   readonly id: Prisma.FieldRef<"Company", 'String'>
   readonly name: Prisma.FieldRef<"Company", 'String'>
   readonly isActive: Prisma.FieldRef<"Company", 'Boolean'>
+  readonly tradeName: Prisma.FieldRef<"Company", 'String'>
+  readonly document: Prisma.FieldRef<"Company", 'String'>
+  readonly cnpj: Prisma.FieldRef<"Company", 'String'>
+  readonly cep: Prisma.FieldRef<"Company", 'String'>
+  readonly street: Prisma.FieldRef<"Company", 'String'>
+  readonly number: Prisma.FieldRef<"Company", 'String'>
+  readonly district: Prisma.FieldRef<"Company", 'String'>
+  readonly city: Prisma.FieldRef<"Company", 'String'>
+  readonly state: Prisma.FieldRef<"Company", 'String'>
   readonly createdAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Company", 'DateTime'>
 }

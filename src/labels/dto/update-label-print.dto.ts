@@ -1,64 +1,55 @@
 import { Type } from 'class-transformer';
 import {
-  Allow,
   IsBoolean,
   IsDateString,
-  IsIn,
-  IsInt,
+  IsEnum,
   IsNumber,
   IsOptional,
   IsString,
-  IsUUID,
   MaxLength,
   Min,
 } from 'class-validator';
+import { LabelWeightUnit } from 'src/generated/prisma/enums';
 
-export class CreateLabelPrintDto {
-  @IsUUID()
-  labelItemId!: string;
-
+export class UpdateLabelPrintDto {
   @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  quantity?: number;
+  @IsString()
+  @MaxLength(60)
+  lot?: string | null;
 
   @IsOptional()
   @Type(() => Number)
   @IsNumber({ maxDecimalPlaces: 3 })
   @Min(0.001)
-  weight?: number;
-
-  @Allow()
-  @IsOptional()
-  @IsIn(['G', 'KG', 'UN'])
-  weightUnit?: 'G' | 'KG' | 'UN';
+  weight?: number | null;
 
   @IsOptional()
-  @IsString()
-  @MaxLength(60)
-  lot?: string;
+  @IsEnum(LabelWeightUnit)
+  weightUnit?: LabelWeightUnit;
 
   @IsOptional()
   @IsDateString()
-  originalExpiresAt?: string;
+  expiresAt?: string;
+
+  @IsOptional()
+  @IsDateString()
+  originalExpiresAt?: string | null;
 
   @IsOptional()
   @IsString()
   @MaxLength(120)
-  brandOrSupplier?: string;
+  brandOrSupplier?: string | null;
 
   @IsOptional()
   @IsString()
   @MaxLength(40)
-  sif?: string;
+  sif?: string | null;
 
   @IsOptional()
   @IsString()
   @MaxLength(120)
-  responsible?: string;
+  responsible?: string | null;
 
-  @Allow()
   @IsOptional()
   @Type(() => Boolean)
   @IsBoolean()

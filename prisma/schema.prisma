@@ -27,10 +27,27 @@ enum LabelPrintStatus {
   CONSUMED
 }
 
+enum LabelWeightUnit {
+  G
+  KG
+  UN
+}
+
 model Company {
   id        String   @id @default(uuid())
   name      String
   isActive  Boolean  @default(true)
+
+  tradeName String?
+  document  String?
+  cnpj      String?
+  cep       String?
+  street    String?
+  number    String?
+  district  String?
+  city      String?
+  state     String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -100,19 +117,32 @@ model LabelPrint {
   id          String           @id @default(uuid())
   labelItemId String
   companyId   String
-  preparedAt  DateTime
-  expiresAt   DateTime
-  quantity    Int?
-  weight      Decimal?         @db.Decimal(10, 3)
-  lot         String?
-  qrCode      String           @unique
-  status      LabelPrintStatus @default(ACTIVE)
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
 
-  consumedAt          DateTime?
-  consumedByUserId    String?
-  consumedByDeviceId  String?
+  preparedAt DateTime
+  expiresAt  DateTime
+
+  originalExpiresAt DateTime?
+
+  quantity Int?
+  weight   Decimal?        @db.Decimal(10, 3)
+  weightUnit LabelWeightUnit @default(KG)
+
+  lot             String?
+  brandOrSupplier String?
+  sif             String?
+  responsible     String?
+
+  showQr Boolean @default(true)
+
+  qrCode String @unique
+  status LabelPrintStatus @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  consumedAt         DateTime?
+  consumedByUserId   String?
+  consumedByDeviceId String?
 
   labelItem LabelItem @relation(fields: [labelItemId], references: [id], onDelete: Restrict)
   company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
@@ -121,6 +151,7 @@ model LabelPrint {
   @@index([companyId])
   @@index([expiresAt])
   @@index([status])
+  @@map("label_prints")
 }
 
 model Device {
@@ -132,7 +163,7 @@ model Device {
   createdAt  DateTime @default(now())
   lastSeenAt DateTime?
 
-  company    Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
   @@index([companyId])
   @@index([lastSeenAt])

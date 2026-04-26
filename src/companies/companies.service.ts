@@ -19,6 +19,14 @@ export class CompaniesService {
     }
   }
 
+  private normalizeText(value?: string | null) {
+    if (value === undefined) return undefined;
+    if (value === null) return null;
+
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : null;
+  }
+
   async create(dto: CreateCompanyDto, user: CurrentUser) {
     this.ensureSuperAdmin(user);
 
@@ -40,6 +48,15 @@ export class CompaniesService {
     return this.prisma.company.create({
       data: {
         name,
+        tradeName: this.normalizeText(dto.tradeName),
+        document: this.normalizeText(dto.document),
+        cnpj: this.normalizeText(dto.cnpj),
+        cep: this.normalizeText(dto.cep),
+        street: this.normalizeText(dto.street),
+        number: this.normalizeText(dto.number),
+        district: this.normalizeText(dto.district),
+        city: this.normalizeText(dto.city),
+        state: this.normalizeText(dto.state)?.toUpperCase(),
       },
     });
   }
@@ -96,6 +113,15 @@ export class CompaniesService {
       data: {
         name,
         isActive: dto.isActive,
+        tradeName: this.normalizeText(dto.tradeName),
+        document: this.normalizeText(dto.document),
+        cnpj: this.normalizeText(dto.cnpj),
+        cep: this.normalizeText(dto.cep),
+        street: this.normalizeText(dto.street),
+        number: this.normalizeText(dto.number),
+        district: this.normalizeText(dto.district),
+        city: this.normalizeText(dto.city),
+        state: this.normalizeText(dto.state)?.toUpperCase(),
       },
     });
   }

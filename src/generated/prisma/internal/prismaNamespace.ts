@@ -896,6 +896,15 @@ export const CompanyScalarFieldEnum = {
   id: 'id',
   name: 'name',
   isActive: 'isActive',
+  tradeName: 'tradeName',
+  document: 'document',
+  cnpj: 'cnpj',
+  cep: 'cep',
+  street: 'street',
+  number: 'number',
+  district: 'district',
+  city: 'city',
+  state: 'state',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -951,9 +960,15 @@ export const LabelPrintScalarFieldEnum = {
   companyId: 'companyId',
   preparedAt: 'preparedAt',
   expiresAt: 'expiresAt',
+  originalExpiresAt: 'originalExpiresAt',
   quantity: 'quantity',
   weight: 'weight',
+  weightUnit: 'weightUnit',
   lot: 'lot',
+  brandOrSupplier: 'brandOrSupplier',
+  sif: 'sif',
+  responsible: 'responsible',
+  showQr: 'showQr',
   qrCode: 'qrCode',
   status: 'status',
   createdAt: 'createdAt',
@@ -1097,6 +1112,20 @@ export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'Decimal[]'
  */
 export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LabelWeightUnit'
+ */
+export type EnumLabelWeightUnitFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LabelWeightUnit'>
+    
+
+
+/**
+ * Reference to a field of type 'LabelWeightUnit[]'
+ */
+export type ListEnumLabelWeightUnitFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LabelWeightUnit[]'>
     
 
 

@@ -6,16 +6,20 @@ import {
 } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { LabelPrintStatus } from 'src/generated/prisma/enums';
+import {
+  LabelPrintStatus,
+  LabelWeightUnit,
+} from 'src/generated/prisma/enums';
 import {
   CreateLabelItemDto,
   CreateLabelPrintDto,
   UpdateLabelItemDto,
+  UpdateLabelPrintDto,
 } from './dto';
 
 @Injectable()
 export class LabelsService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   async createItem(data: CreateLabelItemDto, companyId: string) {
     const name = data.name.trim();
@@ -163,9 +167,16 @@ export class LabelsService {
     }
 
     const preparedAt = new Date();
-    const expiresAt = new Date(
-      preparedAt.getTime() + item.defaultShelfLifeHours * 60 * 60 * 1000,
-    );
+
+    const expiresAt = data.originalExpiresAt
+      ? new Date(data.originalExpiresAt)
+      : new Date(
+          preparedAt.getTime() + item.defaultShelfLifeHours * 60 * 60 * 1000,
+        );
+
+    if (Number.isNaN(expiresAt.getTime())) {
+      throw new BadRequestException('Data de validade inválida.');
+    }
 
     return this.prisma.labelPrint.create({
       data: {
@@ -173,9 +184,17 @@ export class LabelsService {
         companyId,
         preparedAt,
         expiresAt,
+        originalExpiresAt: data.originalExpiresAt
+          ? new Date(data.originalExpiresAt)
+          : null,
         quantity: data.quantity,
         weight: data.weight,
-        lot: data.lot,
+        weightUnit: data.weightUnit ?? LabelWeightUnit.KG,
+        lot: data.lot?.trim() || null,
+        brandOrSupplier: data.brandOrSupplier?.trim() || null,
+        sif: data.sif?.trim() || null,
+        responsible: data.responsible?.trim() || null,
+        showQr: data.showQr ?? true,
         qrCode: randomUUID(),
         status: LabelPrintStatus.ACTIVE,
       },
@@ -185,6 +204,7 @@ export class LabelsService {
             category: true,
           },
         },
+        company: true,
       },
     });
   }
@@ -200,6 +220,7 @@ export class LabelsService {
             category: true,
           },
         },
+        company: true,
       },
       orderBy: { createdAt: 'desc' },
     });
@@ -217,11 +238,14 @@ export class LabelsService {
             category: true,
           },
         },
+        company: true,
       },
     });
 
     if (!print) {
-      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
+      throw new NotFoundException(
+        'Etiqueta não encontrada ou não pertence a essa empresa.',
+      );
     }
 
     return print;
@@ -239,11 +263,14 @@ export class LabelsService {
             category: true,
           },
         },
+        company: true,
       },
     });
 
     if (!print) {
-      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
+      throw new NotFoundException(
+        'Etiqueta não encontrada ou não pertence a essa empresa.',
+      );
     }
 
     const now = new Date();
@@ -254,8 +281,7 @@ export class LabelsService {
         ? LabelPrintStatus.EXPIRED
         : print.status;
 
-    const canConsume =
-      print.status === LabelPrintStatus.ACTIVE && !isExpired;
+    const canConsume = print.status === LabelPrintStatus.ACTIVE && !isExpired;
 
     let message = 'Etiqueta encontrada.';
 
@@ -277,10 +303,37 @@ export class LabelsService {
       canConsume,
       preparedAt: print.preparedAt,
       expiresAt: print.expiresAt,
+      originalExpiresAt: print.originalExpiresAt,
+      quantity: print.quantity,
+      weight: print.weight,
+      weightUnit: print.weightUnit,
+      lot: print.lot,
+      brandOrSupplier: print.brandOrSupplier,
+      sif: print.sif,
+      responsible: print.responsible,
+      showQr: print.showQr,
+      consumedAt: print.consumedAt,
+      consumedByUserId: print.consumedByUserId,
+      consumedByDeviceId: print.consumedByDeviceId,
       message,
+      company: {
+        id: print.company.id,
+        name: print.company.name,
+        tradeName: print.company.tradeName,
+        document: print.company.document,
+        cnpj: print.company.cnpj,
+        cep: print.company.cep,
+        street: print.company.street,
+        number: print.company.number,
+        district: print.company.district,
+        city: print.company.city,
+        state: print.company.state,
+      },
       labelItem: {
         id: print.labelItem.id,
         name: print.labelItem.name,
+        itemType: print.labelItem.itemType,
+        defaultShelfLifeHours: print.labelItem.defaultShelfLifeHours,
         category: {
           id: print.labelItem.category.id,
           name: print.labelItem.category.name,
@@ -291,11 +344,7 @@ export class LabelsService {
 
   async updatePrint(
     id: string,
-    data: {
-      lot?: string | null;
-      weight?: number | null;
-      expiresAt?: Date;
-    },
+    data: UpdateLabelPrintDto,
     companyId: string,
   ) {
     const existing = await this.prisma.labelPrint.findFirst({
@@ -306,15 +355,47 @@ export class LabelsService {
     });
 
     if (!existing) {
-      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
+      throw new NotFoundException(
+        'Etiqueta não encontrada ou não pertence a essa empresa.',
+      );
+    }
+
+    const expiresAt =
+      data.expiresAt !== undefined ? new Date(data.expiresAt) : undefined;
+
+    const originalExpiresAt =
+      data.originalExpiresAt !== undefined && data.originalExpiresAt !== null
+        ? new Date(data.originalExpiresAt)
+        : data.originalExpiresAt === null
+          ? null
+          : undefined;
+
+    if (expiresAt && Number.isNaN(expiresAt.getTime())) {
+      throw new BadRequestException('Data de validade inválida.');
+    }
+
+    if (originalExpiresAt instanceof Date && Number.isNaN(originalExpiresAt.getTime())) {
+      throw new BadRequestException('Data de validade original inválida.');
     }
 
     return this.prisma.labelPrint.update({
       where: { id },
       data: {
-        lot: data.lot,
-        weight: data.weight,
-        expiresAt: data.expiresAt,
+        lot: data.lot !== undefined ? data.lot?.trim() || null : undefined,
+        weight: data.weight !== undefined ? data.weight : undefined,
+        weightUnit: data.weightUnit,
+        expiresAt,
+        originalExpiresAt,
+        brandOrSupplier:
+          data.brandOrSupplier !== undefined
+            ? data.brandOrSupplier?.trim() || null
+            : undefined,
+        sif: data.sif !== undefined ? data.sif?.trim() || null : undefined,
+        responsible:
+          data.responsible !== undefined
+            ? data.responsible?.trim() || null
+            : undefined,
+        showQr: data.showQr,
       },
       include: {
         labelItem: {
@@ -322,6 +403,7 @@ export class LabelsService {
             category: true,
           },
         },
+        company: true,
       },
     });
   }
@@ -339,7 +421,9 @@ export class LabelsService {
     });
 
     if (!existing) {
-      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
+      throw new NotFoundException(
+        'Etiqueta não encontrada ou não pertence a essa empresa.',
+      );
     }
 
     return this.prisma.labelPrint.update({
@@ -351,6 +435,7 @@ export class LabelsService {
             category: true,
           },
         },
+        company: true,
       },
     });
   }
@@ -369,7 +454,9 @@ export class LabelsService {
     });
 
     if (!existing) {
-      throw new NotFoundException('Etiqueta não encontrada ou não pertence a essa empresa.');
+      throw new NotFoundException(
+        'Etiqueta não encontrada ou não pertence a essa empresa.',
+      );
     }
 
     if (existing.status !== LabelPrintStatus.ACTIVE) {
@@ -386,8 +473,6 @@ export class LabelsService {
       where: { id },
       data: {
         status: LabelPrintStatus.CONSUMED,
-
-        // 🔥 AUDITORIA
         consumedAt: now,
         consumedByUserId: userId,
         consumedByDeviceId: device.deviceId,

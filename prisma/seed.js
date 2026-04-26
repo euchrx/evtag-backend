@@ -14,6 +14,9 @@ async function main() {
   const adminPassword = process.env.SEED_SUPER_ADMIN_PASSWORD;
   const adminName = process.env.SEED_SUPER_ADMIN_NAME || 'Super Admin';
 
+  const defaultCompanyName =
+    process.env.SEED_DEFAULT_COMPANY_NAME || 'Empresa Padrão';
+
   if (!adminEmail) {
     throw new Error('SEED_SUPER_ADMIN_EMAIL não está definida.');
   }
@@ -27,6 +30,33 @@ async function main() {
 
   try {
     const normalizedEmail = adminEmail.trim().toLowerCase();
+
+    let company = await prisma.company.findFirst({
+      where: {
+        name: {
+          equals: defaultCompanyName,
+          mode: 'insensitive',
+        },
+      },
+    });
+
+    if (company) {
+      company = await prisma.company.update({
+        where: { id: company.id },
+        data: {
+          isActive: true,
+          tradeName: company.tradeName || defaultCompanyName,
+        },
+      });
+    } else {
+      company = await prisma.company.create({
+        data: {
+          name: defaultCompanyName,
+          tradeName: defaultCompanyName,
+          isActive: true,
+        },
+      });
+    }
 
     const existing = await prisma.user.findUnique({
       where: { email: normalizedEmail },
@@ -46,6 +76,8 @@ async function main() {
         },
       });
 
+      console.log(`Empresa padrão disponível: ${company.name}`);
+      console.log(`ID da empresa padrão: ${company.id}`);
       console.log(`SUPER_ADMIN atualizado: ${normalizedEmail}`);
       return;
     }
@@ -61,6 +93,8 @@ async function main() {
       },
     });
 
+    console.log(`Empresa padrão criada/disponível: ${company.name}`);
+    console.log(`ID da empresa padrão: ${company.id}`);
     console.log(`SUPER_ADMIN criado: ${normalizedEmail}`);
   } finally {
     await prisma.$disconnect();

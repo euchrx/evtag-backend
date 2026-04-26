@@ -35,3 +35,12 @@ export const LabelPrintStatus = {
 } as const
 
 export type LabelPrintStatus = (typeof LabelPrintStatus)[keyof typeof LabelPrintStatus]
+
+
+export const LabelWeightUnit = {
+  G: 'G',
+  KG: 'KG',
+  UN: 'UN'
+} as const
+
+export type LabelWeightUnit = (typeof LabelWeightUnit)[keyof typeof LabelWeightUnit]

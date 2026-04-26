@@ -42,9 +42,15 @@ export type LabelPrintMinAggregateOutputType = {
   companyId: string | null
   preparedAt: Date | null
   expiresAt: Date | null
+  originalExpiresAt: Date | null
   quantity: number | null
   weight: runtime.Decimal | null
+  weightUnit: $Enums.LabelWeightUnit | null
   lot: string | null
+  brandOrSupplier: string | null
+  sif: string | null
+  responsible: string | null
+  showQr: boolean | null
   qrCode: string | null
   status: $Enums.LabelPrintStatus | null
   createdAt: Date | null
@@ -60,9 +66,15 @@ export type LabelPrintMaxAggregateOutputType = {
   companyId: string | null
   preparedAt: Date | null
   expiresAt: Date | null
+  originalExpiresAt: Date | null
   quantity: number | null
   weight: runtime.Decimal | null
+  weightUnit: $Enums.LabelWeightUnit | null
   lot: string | null
+  brandOrSupplier: string | null
+  sif: string | null
+  responsible: string | null
+  showQr: boolean | null
   qrCode: string | null
   status: $Enums.LabelPrintStatus | null
   createdAt: Date | null
@@ -78,9 +90,15 @@ export type LabelPrintCountAggregateOutputType = {
   companyId: number
   preparedAt: number
   expiresAt: number
+  originalExpiresAt: number
   quantity: number
   weight: number
+  weightUnit: number
   lot: number
+  brandOrSupplier: number
+  sif: number
+  responsible: number
+  showQr: number
   qrCode: number
   status: number
   createdAt: number
@@ -108,9 +126,15 @@ export type LabelPrintMinAggregateInputType = {
   companyId?: true
   preparedAt?: true
   expiresAt?: true
+  originalExpiresAt?: true
   quantity?: true
   weight?: true
+  weightUnit?: true
   lot?: true
+  brandOrSupplier?: true
+  sif?: true
+  responsible?: true
+  showQr?: true
   qrCode?: true
   status?: true
   createdAt?: true
@@ -126,9 +150,15 @@ export type LabelPrintMaxAggregateInputType = {
   companyId?: true
   preparedAt?: true
   expiresAt?: true
+  originalExpiresAt?: true
   quantity?: true
   weight?: true
+  weightUnit?: true
   lot?: true
+  brandOrSupplier?: true
+  sif?: true
+  responsible?: true
+  showQr?: true
   qrCode?: true
   status?: true
   createdAt?: true
@@ -144,9 +174,15 @@ export type LabelPrintCountAggregateInputType = {
   companyId?: true
   preparedAt?: true
   expiresAt?: true
+  originalExpiresAt?: true
   quantity?: true
   weight?: true
+  weightUnit?: true
   lot?: true
+  brandOrSupplier?: true
+  sif?: true
+  responsible?: true
+  showQr?: true
   qrCode?: true
   status?: true
   createdAt?: true
@@ -249,9 +285,15 @@ export type LabelPrintGroupByOutputType = {
   companyId: string
   preparedAt: Date
   expiresAt: Date
+  originalExpiresAt: Date | null
   quantity: number | null
   weight: runtime.Decimal | null
+  weightUnit: $Enums.LabelWeightUnit
   lot: string | null
+  brandOrSupplier: string | null
+  sif: string | null
+  responsible: string | null
+  showQr: boolean
   qrCode: string
   status: $Enums.LabelPrintStatus
   createdAt: Date
@@ -290,9 +332,15 @@ export type LabelPrintWhereInput = {
   companyId?: Prisma.StringFilter<"LabelPrint"> | string
   preparedAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
   expiresAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
+  originalExpiresAt?: Prisma.DateTimeNullableFilter<"LabelPrint"> | Date | string | null
   quantity?: Prisma.IntNullableFilter<"LabelPrint"> | number | null
   weight?: Prisma.DecimalNullableFilter<"LabelPrint"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFilter<"LabelPrint"> | $Enums.LabelWeightUnit
   lot?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  brandOrSupplier?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  sif?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  responsible?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  showQr?: Prisma.BoolFilter<"LabelPrint"> | boolean
   qrCode?: Prisma.StringFilter<"LabelPrint"> | string
   status?: Prisma.EnumLabelPrintStatusFilter<"LabelPrint"> | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
@@ -310,9 +358,15 @@ export type LabelPrintOrderByWithRelationInput = {
   companyId?: Prisma.SortOrder
   preparedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  originalExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrderInput | Prisma.SortOrder
   weight?: Prisma.SortOrderInput | Prisma.SortOrder
+  weightUnit?: Prisma.SortOrder
   lot?: Prisma.SortOrderInput | Prisma.SortOrder
+  brandOrSupplier?: Prisma.SortOrderInput | Prisma.SortOrder
+  sif?: Prisma.SortOrderInput | Prisma.SortOrder
+  responsible?: Prisma.SortOrderInput | Prisma.SortOrder
+  showQr?: Prisma.SortOrder
   qrCode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -334,9 +388,15 @@ export type LabelPrintWhereUniqueInput = Prisma.AtLeast<{
   companyId?: Prisma.StringFilter<"LabelPrint"> | string
   preparedAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
   expiresAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
+  originalExpiresAt?: Prisma.DateTimeNullableFilter<"LabelPrint"> | Date | string | null
   quantity?: Prisma.IntNullableFilter<"LabelPrint"> | number | null
   weight?: Prisma.DecimalNullableFilter<"LabelPrint"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFilter<"LabelPrint"> | $Enums.LabelWeightUnit
   lot?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  brandOrSupplier?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  sif?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  responsible?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  showQr?: Prisma.BoolFilter<"LabelPrint"> | boolean
   status?: Prisma.EnumLabelPrintStatusFilter<"LabelPrint"> | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
@@ -353,9 +413,15 @@ export type LabelPrintOrderByWithAggregationInput = {
   companyId?: Prisma.SortOrder
   preparedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  originalExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrderInput | Prisma.SortOrder
   weight?: Prisma.SortOrderInput | Prisma.SortOrder
+  weightUnit?: Prisma.SortOrder
   lot?: Prisma.SortOrderInput | Prisma.SortOrder
+  brandOrSupplier?: Prisma.SortOrderInput | Prisma.SortOrder
+  sif?: Prisma.SortOrderInput | Prisma.SortOrder
+  responsible?: Prisma.SortOrderInput | Prisma.SortOrder
+  showQr?: Prisma.SortOrder
   qrCode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -379,9 +445,15 @@ export type LabelPrintScalarWhereWithAggregatesInput = {
   companyId?: Prisma.StringWithAggregatesFilter<"LabelPrint"> | string
   preparedAt?: Prisma.DateTimeWithAggregatesFilter<"LabelPrint"> | Date | string
   expiresAt?: Prisma.DateTimeWithAggregatesFilter<"LabelPrint"> | Date | string
+  originalExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"LabelPrint"> | Date | string | null
   quantity?: Prisma.IntNullableWithAggregatesFilter<"LabelPrint"> | number | null
   weight?: Prisma.DecimalNullableWithAggregatesFilter<"LabelPrint"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitWithAggregatesFilter<"LabelPrint"> | $Enums.LabelWeightUnit
   lot?: Prisma.StringNullableWithAggregatesFilter<"LabelPrint"> | string | null
+  brandOrSupplier?: Prisma.StringNullableWithAggregatesFilter<"LabelPrint"> | string | null
+  sif?: Prisma.StringNullableWithAggregatesFilter<"LabelPrint"> | string | null
+  responsible?: Prisma.StringNullableWithAggregatesFilter<"LabelPrint"> | string | null
+  showQr?: Prisma.BoolWithAggregatesFilter<"LabelPrint"> | boolean
   qrCode?: Prisma.StringWithAggregatesFilter<"LabelPrint"> | string
   status?: Prisma.EnumLabelPrintStatusWithAggregatesFilter<"LabelPrint"> | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"LabelPrint"> | Date | string
@@ -395,9 +467,15 @@ export type LabelPrintCreateInput = {
   id?: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -415,9 +493,15 @@ export type LabelPrintUncheckedCreateInput = {
   companyId: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -431,9 +515,15 @@ export type LabelPrintUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -451,9 +541,15 @@ export type LabelPrintUncheckedUpdateInput = {
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -469,9 +565,15 @@ export type LabelPrintCreateManyInput = {
   companyId: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -485,9 +587,15 @@ export type LabelPrintUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -503,9 +611,15 @@ export type LabelPrintUncheckedUpdateManyInput = {
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -531,9 +645,15 @@ export type LabelPrintCountOrderByAggregateInput = {
   companyId?: Prisma.SortOrder
   preparedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  originalExpiresAt?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+  weightUnit?: Prisma.SortOrder
   lot?: Prisma.SortOrder
+  brandOrSupplier?: Prisma.SortOrder
+  sif?: Prisma.SortOrder
+  responsible?: Prisma.SortOrder
+  showQr?: Prisma.SortOrder
   qrCode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -554,9 +674,15 @@ export type LabelPrintMaxOrderByAggregateInput = {
   companyId?: Prisma.SortOrder
   preparedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  originalExpiresAt?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+  weightUnit?: Prisma.SortOrder
   lot?: Prisma.SortOrder
+  brandOrSupplier?: Prisma.SortOrder
+  sif?: Prisma.SortOrder
+  responsible?: Prisma.SortOrder
+  showQr?: Prisma.SortOrder
   qrCode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -572,9 +698,15 @@ export type LabelPrintMinOrderByAggregateInput = {
   companyId?: Prisma.SortOrder
   preparedAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  originalExpiresAt?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+  weightUnit?: Prisma.SortOrder
   lot?: Prisma.SortOrder
+  brandOrSupplier?: Prisma.SortOrder
+  sif?: Prisma.SortOrder
+  responsible?: Prisma.SortOrder
+  showQr?: Prisma.SortOrder
   qrCode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -673,6 +805,10 @@ export type LabelPrintUncheckedUpdateManyWithoutLabelItemNestedInput = {
   deleteMany?: Prisma.LabelPrintScalarWhereInput | Prisma.LabelPrintScalarWhereInput[]
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type NullableIntFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
@@ -689,21 +825,27 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type EnumLabelPrintStatusFieldUpdateOperationsInput = {
-  set?: $Enums.LabelPrintStatus
+export type EnumLabelWeightUnitFieldUpdateOperationsInput = {
+  set?: $Enums.LabelWeightUnit
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
+export type EnumLabelPrintStatusFieldUpdateOperationsInput = {
+  set?: $Enums.LabelPrintStatus
 }
 
 export type LabelPrintCreateWithoutCompanyInput = {
   id?: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -719,9 +861,15 @@ export type LabelPrintUncheckedCreateWithoutCompanyInput = {
   labelItemId: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -766,9 +914,15 @@ export type LabelPrintScalarWhereInput = {
   companyId?: Prisma.StringFilter<"LabelPrint"> | string
   preparedAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
   expiresAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
+  originalExpiresAt?: Prisma.DateTimeNullableFilter<"LabelPrint"> | Date | string | null
   quantity?: Prisma.IntNullableFilter<"LabelPrint"> | number | null
   weight?: Prisma.DecimalNullableFilter<"LabelPrint"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFilter<"LabelPrint"> | $Enums.LabelWeightUnit
   lot?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  brandOrSupplier?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  sif?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  responsible?: Prisma.StringNullableFilter<"LabelPrint"> | string | null
+  showQr?: Prisma.BoolFilter<"LabelPrint"> | boolean
   qrCode?: Prisma.StringFilter<"LabelPrint"> | string
   status?: Prisma.EnumLabelPrintStatusFilter<"LabelPrint"> | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFilter<"LabelPrint"> | Date | string
@@ -782,9 +936,15 @@ export type LabelPrintCreateWithoutLabelItemInput = {
   id?: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -800,9 +960,15 @@ export type LabelPrintUncheckedCreateWithoutLabelItemInput = {
   companyId: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -843,9 +1009,15 @@ export type LabelPrintCreateManyCompanyInput = {
   labelItemId: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -859,9 +1031,15 @@ export type LabelPrintUpdateWithoutCompanyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -877,9 +1055,15 @@ export type LabelPrintUncheckedUpdateWithoutCompanyInput = {
   labelItemId?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -894,9 +1078,15 @@ export type LabelPrintUncheckedUpdateManyWithoutCompanyInput = {
   labelItemId?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -911,9 +1101,15 @@ export type LabelPrintCreateManyLabelItemInput = {
   companyId: string
   preparedAt: Date | string
   expiresAt: Date | string
+  originalExpiresAt?: Date | string | null
   quantity?: number | null
   weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: $Enums.LabelWeightUnit
   lot?: string | null
+  brandOrSupplier?: string | null
+  sif?: string | null
+  responsible?: string | null
+  showQr?: boolean
   qrCode: string
   status?: $Enums.LabelPrintStatus
   createdAt?: Date | string
@@ -927,9 +1123,15 @@ export type LabelPrintUpdateWithoutLabelItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -945,9 +1147,15 @@ export type LabelPrintUncheckedUpdateWithoutLabelItemInput = {
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -962,9 +1170,15 @@ export type LabelPrintUncheckedUpdateManyWithoutLabelItemInput = {
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
   preparedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  originalExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  weightUnit?: Prisma.EnumLabelWeightUnitFieldUpdateOperationsInput | $Enums.LabelWeightUnit
   lot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  brandOrSupplier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sif?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsible?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  showQr?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumLabelPrintStatusFieldUpdateOperationsInput | $Enums.LabelPrintStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -982,9 +1196,15 @@ export type LabelPrintSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   companyId?: boolean
   preparedAt?: boolean
   expiresAt?: boolean
+  originalExpiresAt?: boolean
   quantity?: boolean
   weight?: boolean
+  weightUnit?: boolean
   lot?: boolean
+  brandOrSupplier?: boolean
+  sif?: boolean
+  responsible?: boolean
+  showQr?: boolean
   qrCode?: boolean
   status?: boolean
   createdAt?: boolean
@@ -1002,9 +1222,15 @@ export type LabelPrintSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   companyId?: boolean
   preparedAt?: boolean
   expiresAt?: boolean
+  originalExpiresAt?: boolean
   quantity?: boolean
   weight?: boolean
+  weightUnit?: boolean
   lot?: boolean
+  brandOrSupplier?: boolean
+  sif?: boolean
+  responsible?: boolean
+  showQr?: boolean
   qrCode?: boolean
   status?: boolean
   createdAt?: boolean
@@ -1022,9 +1248,15 @@ export type LabelPrintSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   companyId?: boolean
   preparedAt?: boolean
   expiresAt?: boolean
+  originalExpiresAt?: boolean
   quantity?: boolean
   weight?: boolean
+  weightUnit?: boolean
   lot?: boolean
+  brandOrSupplier?: boolean
+  sif?: boolean
+  responsible?: boolean
+  showQr?: boolean
   qrCode?: boolean
   status?: boolean
   createdAt?: boolean
@@ -1042,9 +1274,15 @@ export type LabelPrintSelectScalar = {
   companyId?: boolean
   preparedAt?: boolean
   expiresAt?: boolean
+  originalExpiresAt?: boolean
   quantity?: boolean
   weight?: boolean
+  weightUnit?: boolean
   lot?: boolean
+  brandOrSupplier?: boolean
+  sif?: boolean
+  responsible?: boolean
+  showQr?: boolean
   qrCode?: boolean
   status?: boolean
   createdAt?: boolean
@@ -1054,7 +1292,7 @@ export type LabelPrintSelectScalar = {
   consumedByDeviceId?: boolean
 }
 
-export type LabelPrintOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "labelItemId" | "companyId" | "preparedAt" | "expiresAt" | "quantity" | "weight" | "lot" | "qrCode" | "status" | "createdAt" | "updatedAt" | "consumedAt" | "consumedByUserId" | "consumedByDeviceId", ExtArgs["result"]["labelPrint"]>
+export type LabelPrintOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "labelItemId" | "companyId" | "preparedAt" | "expiresAt" | "originalExpiresAt" | "quantity" | "weight" | "weightUnit" | "lot" | "brandOrSupplier" | "sif" | "responsible" | "showQr" | "qrCode" | "status" | "createdAt" | "updatedAt" | "consumedAt" | "consumedByUserId" | "consumedByDeviceId", ExtArgs["result"]["labelPrint"]>
 export type LabelPrintInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   labelItem?: boolean | Prisma.LabelItemDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1080,9 +1318,15 @@ export type $LabelPrintPayload<ExtArgs extends runtime.Types.Extensions.Internal
     companyId: string
     preparedAt: Date
     expiresAt: Date
+    originalExpiresAt: Date | null
     quantity: number | null
     weight: runtime.Decimal | null
+    weightUnit: $Enums.LabelWeightUnit
     lot: string | null
+    brandOrSupplier: string | null
+    sif: string | null
+    responsible: string | null
+    showQr: boolean
     qrCode: string
     status: $Enums.LabelPrintStatus
     createdAt: Date
@@ -1520,9 +1764,15 @@ export interface LabelPrintFieldRefs {
   readonly companyId: Prisma.FieldRef<"LabelPrint", 'String'>
   readonly preparedAt: Prisma.FieldRef<"LabelPrint", 'DateTime'>
   readonly expiresAt: Prisma.FieldRef<"LabelPrint", 'DateTime'>
+  readonly originalExpiresAt: Prisma.FieldRef<"LabelPrint", 'DateTime'>
   readonly quantity: Prisma.FieldRef<"LabelPrint", 'Int'>
   readonly weight: Prisma.FieldRef<"LabelPrint", 'Decimal'>
+  readonly weightUnit: Prisma.FieldRef<"LabelPrint", 'LabelWeightUnit'>
   readonly lot: Prisma.FieldRef<"LabelPrint", 'String'>
+  readonly brandOrSupplier: Prisma.FieldRef<"LabelPrint", 'String'>
+  readonly sif: Prisma.FieldRef<"LabelPrint", 'String'>
+  readonly responsible: Prisma.FieldRef<"LabelPrint", 'String'>
+  readonly showQr: Prisma.FieldRef<"LabelPrint", 'Boolean'>
   readonly qrCode: Prisma.FieldRef<"LabelPrint", 'String'>
   readonly status: Prisma.FieldRef<"LabelPrint", 'LabelPrintStatus'>
   readonly createdAt: Prisma.FieldRef<"LabelPrint", 'DateTime'>

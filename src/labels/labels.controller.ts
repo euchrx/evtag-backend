@@ -6,15 +6,14 @@ import {
   Param,
   Patch,
   Post,
-  UseGuards,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import { LabelsService } from './labels.service';
-import {
-  CreateLabelItemDto,
-  CreateLabelPrintDto,
-  UpdateLabelItemDto,
-} from './dto';
+import { CreateLabelItemDto } from './dto/create-label-item.dto';
+import { CreateLabelPrintDto } from './dto/create-label-print.dto';
+import { UpdateLabelItemDto } from './dto/update-label-item.dto';
+import { UpdateLabelPrintDto } from './dto/update-label-print.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { CompanyScopeGuard } from 'src/common/guards/company-scope.guard';
@@ -22,15 +21,13 @@ import { Roles } from 'src/common/decorators/roles.decorator';
 import { CompanyContext } from 'src/common/decorators/company-context.decorator';
 import type { RequestCompanyContext } from 'src/common/interfaces/request-company-context.interface';
 import { LabelPrintStatus } from 'src/generated/prisma/enums';
-
-// 🔥 NOVOS IMPORTS
 import { DeviceGuard } from 'src/common/guards/device.guard';
 import { CurrentDevice } from 'src/common/decorators/current-device.decorator';
 
 @UseGuards(JwtAuthGuard, RolesGuard, CompanyScopeGuard)
 @Controller('labels')
 export class LabelsController {
-  constructor(private readonly labelsService: LabelsService) {}
+  constructor(private readonly labelsService: LabelsService) { }
 
   // =========================
   // ITEMS
@@ -89,6 +86,9 @@ export class LabelsController {
     @Body() dto: CreateLabelPrintDto,
     @CompanyContext() company: RequestCompanyContext,
   ) {
+    console.log('BODY /labels/prints:', dto);
+    console.log('DTO INSTANCE:', dto instanceof CreateLabelPrintDto);
+
     return this.labelsService.createPrint(dto, company.companyId);
   }
 
@@ -123,12 +123,7 @@ export class LabelsController {
   @Roles('SUPER_ADMIN', 'COMPANY_ADMIN', 'OPERATOR')
   updatePrint(
     @Param('id') id: string,
-    @Body()
-    dto: {
-      lot?: string | null;
-      weight?: number | null;
-      expiresAt?: Date;
-    },
+    @Body() dto: UpdateLabelPrintDto,
     @CompanyContext() company: RequestCompanyContext,
   ) {
     return this.labelsService.updatePrint(id, dto, company.companyId);
@@ -141,15 +136,11 @@ export class LabelsController {
     @Body('status') status: LabelPrintStatus,
     @CompanyContext() company: RequestCompanyContext,
   ) {
-    return this.labelsService.updatePrintStatus(
-      id,
-      status,
-      company.companyId,
-    );
+    return this.labelsService.updatePrintStatus(id, status, company.companyId);
   }
 
   // =========================
-  // 🔥 CONSUMO COM DEVICE
+  // CONSUMO COM DEVICE
   // =========================
 
   @UseGuards(JwtAuthGuard, RolesGuard, CompanyScopeGuard, DeviceGuard)
