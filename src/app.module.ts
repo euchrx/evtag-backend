@@ -6,8 +6,9 @@ import { AuthModule } from './auth/auth.module';
 import { CompaniesModule } from './companies/companies.module';
 import { UsersModule } from './users/users.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { MobileModule } from './mobile/mobile.module';
 
 @Module({
-  imports: [PrismaModule, LabelsModule, CategoriesModule, AuthModule, CompaniesModule, UsersModule, DashboardModule],
+  imports: [PrismaModule, LabelsModule, CategoriesModule, AuthModule, CompaniesModule, UsersModule, DashboardModule, MobileModule],
 })
 export class AppModule {}
