@@ -5,6 +5,7 @@ import {
   Headers,
   Param,
   Patch,
+  Post,
   Query,
 } from '@nestjs/common';
 import { MobileService } from './mobile.service';
@@ -12,6 +13,22 @@ import { MobileService } from './mobile.service';
 @Controller('mobile')
 export class MobileController {
   constructor(private readonly mobileService: MobileService) {}
+
+  @Post('devices/heartbeat')
+  async heartbeatDevice(
+    @Headers('x-device-id') headerDeviceId?: string,
+    @Headers('x-company-id') companyId?: string,
+    @Query('deviceId') queryDeviceId?: string,
+    @Body() body?: { deviceId?: string; name?: string },
+  ) {
+    const deviceId = headerDeviceId || body?.deviceId || queryDeviceId;
+
+    return this.mobileService.heartbeatDevice({
+      deviceId,
+      companyId,
+      name: body?.name,
+    });
+  }
 
   @Get('labels/lookup/:qrCode')
   async lookupLabel(

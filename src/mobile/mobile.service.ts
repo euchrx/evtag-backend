@@ -11,8 +11,141 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class MobileService {
   constructor(private readonly prisma: PrismaService) {}
 
+  private normalizeDeviceId(deviceId?: string) {
+    return String(deviceId || '').trim();
+  }
+
+  async heartbeatDevice(input: {
+    deviceId?: string;
+    companyId?: string;
+    name?: string;
+  }) {
+    const cleanDeviceId = this.normalizeDeviceId(input.deviceId);
+    const companyId = String(input.companyId || '').trim();
+    const name = String(input.name || '').trim();
+
+    if (!cleanDeviceId) {
+      throw new BadRequestException('Device ID não informado.');
+    }
+
+    if (!companyId) {
+      throw new BadRequestException('Empresa não informada para vincular o dispositivo.');
+    }
+
+    const company = await this.prisma.company.findUnique({
+      where: { id: companyId },
+      select: {
+        id: true,
+        name: true,
+        tradeName: true,
+        isActive: true,
+      },
+    });
+
+    if (!company) {
+      throw new NotFoundException('Empresa não encontrada.');
+    }
+
+    if (!company.isActive) {
+      throw new ForbiddenException('Empresa inativa.');
+    }
+
+    const existing = await this.prisma.device.findUnique({
+      where: {
+        deviceId: cleanDeviceId,
+      },
+      include: {
+        company: {
+          select: {
+            id: true,
+            name: true,
+            tradeName: true,
+          },
+        },
+      },
+    });
+
+    if (existing && existing.companyId !== company.id) {
+      throw new ForbiddenException('Dispositivo já vinculado a outra empresa.');
+    }
+
+    if (existing) {
+      const updated = await this.prisma.device.update({
+        where: {
+          id: existing.id,
+        },
+        data: {
+          lastSeenAt: new Date(),
+          name: name || existing.name,
+        },
+        include: {
+          company: {
+            select: {
+              id: true,
+              name: true,
+              tradeName: true,
+            },
+          },
+        },
+      });
+
+      return {
+        success: true,
+        registered: true,
+        created: false,
+        device: {
+          id: updated.id,
+          deviceId: updated.deviceId,
+          name: updated.name,
+          isActive: updated.isActive,
+          lastSeenAt: updated.lastSeenAt,
+          company: {
+            id: updated.company.id,
+            name: updated.company.tradeName || updated.company.name,
+          },
+        },
+      };
+    }
+
+    const created = await this.prisma.device.create({
+      data: {
+        deviceId: cleanDeviceId,
+        name: name || 'Tablet produção',
+        companyId: company.id,
+        isActive: true,
+        lastSeenAt: new Date(),
+      },
+      include: {
+        company: {
+          select: {
+            id: true,
+            name: true,
+            tradeName: true,
+          },
+        },
+      },
+    });
+
+    return {
+      success: true,
+      registered: true,
+      created: true,
+      device: {
+        id: created.id,
+        deviceId: created.deviceId,
+        name: created.name,
+        isActive: created.isActive,
+        lastSeenAt: created.lastSeenAt,
+        company: {
+          id: created.company.id,
+          name: created.company.tradeName || created.company.name,
+        },
+      },
+    };
+  }
+
   private async getActiveDevice(deviceId?: string) {
-    const cleanDeviceId = String(deviceId || '').trim();
+    const cleanDeviceId = this.normalizeDeviceId(deviceId);
 
     if (!cleanDeviceId) {
       throw new ForbiddenException('Device ID não informado.');
