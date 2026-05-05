@@ -86,9 +86,6 @@ export class LabelsController {
     @Body() dto: CreateLabelPrintDto,
     @CompanyContext() company: RequestCompanyContext,
   ) {
-    console.log('BODY /labels/prints:', dto);
-    console.log('DTO INSTANCE:', dto instanceof CreateLabelPrintDto);
-
     return this.labelsService.createPrint(dto, company.companyId);
   }
 

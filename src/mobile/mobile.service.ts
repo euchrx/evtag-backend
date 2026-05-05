@@ -11,7 +11,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class MobileService {
   constructor(private readonly prisma: PrismaService) {}
 
-  private async getActiveDevice(deviceId: string) {
+  private async getActiveDevice(deviceId?: string) {
     const cleanDeviceId = String(deviceId || '').trim();
 
     if (!cleanDeviceId) {
@@ -54,7 +54,7 @@ export class MobileService {
     return device;
   }
 
-  async lookupLabelByQrCode(qrCode: string, deviceId: string) {
+  async lookupLabelByQrCode(qrCode: string, deviceId?: string) {
     const device = await this.getActiveDevice(deviceId);
 
     const cleanQrCode = String(qrCode || '').trim();
@@ -145,7 +145,7 @@ export class MobileService {
     };
   }
 
-  async consumeLabel(id: string, deviceId: string, responsible?: string) {
+  async consumeLabel(id: string, deviceId?: string, responsible?: string) {
     const device = await this.getActiveDevice(deviceId);
 
     const labelPrint = await this.prisma.labelPrint.findFirst({
